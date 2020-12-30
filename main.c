@@ -1,20 +1,10 @@
 #include <stdio.h>
+
+int sum(int a,int b)
+{
+   return a+b;
+}
 int main() {
    // printf() displays the string inside quotation
-   printf("Hello, Idannnnnnnnn");
-   printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
-  printf("Hello, World!2");
- printf("Hello, World!2");
+   printf("%d",sum(10,5));
 }
