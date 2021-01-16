@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "Constants.h"
-
+#include "FirstTransition.h"
 int main() {
-   
+   firstTransition();
 }
