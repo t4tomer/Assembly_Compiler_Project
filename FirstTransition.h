@@ -1,2 +1,2 @@
-
-int firstTransition();
+#include "Structs.h"
+int firstTransition(char*);
