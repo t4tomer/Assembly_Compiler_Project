@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "constants.h": "c"
+        "constants.h": "c",
+        "utilsfuncs.h": "c",
+        "structs.h": "c",
+        "stdlib.h": "c"
     }
 }
