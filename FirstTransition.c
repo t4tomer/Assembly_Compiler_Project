@@ -22,6 +22,7 @@ int firstTransition (char *fileName)
     while(temp!=NULL)
     {
         printf("%s->",temp->words);
+        temp=temp->next;
     }
     
     if (fclose(insFile))

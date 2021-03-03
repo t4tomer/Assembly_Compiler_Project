@@ -1,8 +1,10 @@
-#ifndef UTILSFUNCS
-#define UTILSFUNCS
+
+#ifndef UTILSFUNCSH
+#define UTILSFUNCSH
+
 
 #include <stdio.h>
-#include "Constants.h"
+#include "Structs.h"
 instNode* buildInstructionsList(FILE *);
 
-#endif
+#endif 
