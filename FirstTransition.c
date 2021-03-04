@@ -5,6 +5,7 @@
 #include "Constants.h"
 #include "Structs.h"
 #include "UtilsFuncs.h"
+
 int firstTransition (char *fileName)
 {
     int IC=100,DC=0; /*IC - Instructions counter, DC - Data counter.*/
@@ -21,9 +22,12 @@ int firstTransition (char *fileName)
     temp = listOfInstructions;
     while(temp!=NULL)
     {
-        int i;
-        for(i=0;i<temp->amountOfWords;i++)
-            printf("%s ",temp->words[i]);
+        int i=0;
+        for(;i<temp->amountOfWords;i++){
+            printf("%s(%d) ",temp->words[i],strlen(temp->words[i]));
+        }
+        printf("\n");
+        printf("%d",temp->words[i-1][strlen(temp->words)-1]);
         printf("->\n");
         temp=temp->next;
     }
