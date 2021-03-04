@@ -10,7 +10,7 @@ This file contains all the utilites functions for the project.
 
 
 char *trimSpace(char *str);/*Help function to trim spaces*/
-char** convertLineToArray(char* line); /* this function converts line to an array by using delimeter of space */
+void convertLineToArray(char* line, char** arr); /* this function converts line to an array by using delimeter of space */
 char amountOfSpaces(char* line); /*this function returns the amount of spaces */
 
 instNode* buildInstructionsList(FILE *insFile)
@@ -22,13 +22,13 @@ instNode* buildInstructionsList(FILE *insFile)
     while (fgets(line, MAX_LINE_LEN, insFile))
     {
         instNode *node = malloc(sizeof(instNode));
-        node->words=convertLineToArray(trimSpace(line));
-        node->amountOfWords=amountOfSpaces(line)+1;
+
+        node->amountOfWords=amountOfSpaces(trimSpace(line))+1;
+        node->words = malloc(sizeof(char**) * node->amountOfWords);
+        convertLineToArray(trimSpace(line), node->words);
+
         node->next =NULL;
-    
-        /*for(i=0;i<node->amountOfWords;i++)
-            printf("%s,",node->words[i]);
-        printf("\n");*/
+
         if(head == NULL){  
             pos = head = node;
         } else {
@@ -58,30 +58,22 @@ char *trimSpace(char *str)
   return str;
 }
 
-char** convertLineToArray(char* line){
+void convertLineToArray(char* line, char** arr){
 
     char nSpaces;
     int i;
-    char **words;
     char *pWord;  
+    nSpaces=amountOfSpaces(line);
 
-   nSpaces=amountOfSpaces(line);
-
-    words=malloc((nSpaces+1)*sizeof(char*));
     /* split the elements by space delimeter */ 
-    pWord=strtok(line," ");
+    pWord=strtok(line," \t");
     i=0;
     while(pWord!=NULL)
     {
-        words[i]=malloc(sizeof(char)*(strlen(pWord)+1));
-        strcpy(words[i],pWord);
-        pWord=strtok(NULL," "); 
-        i++;
+        arr[i] = malloc(sizeof(char*));
+        strcpy(arr[i++],pWord);
+        pWord=strtok(NULL," \t");
     }
-    for(i=0;i<nSpaces;i++)
-        printf("%s,",words[i]);
-    printf("\n");
-    return words;
 }
 
 char amountOfSpaces(char* line){

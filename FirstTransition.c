@@ -18,17 +18,16 @@ int firstTransition (char *fileName)
     }
 
     listOfInstructions = buildInstructionsList(insFile);
-    /*temp = listOfInstructions;
+    temp = listOfInstructions;
     while(temp!=NULL)
     {
         int i;
         for(i=0;i<temp->amountOfWords;i++)
-            printf("%s,",temp->words[i]);
-        printf("\n->\n");
+            printf("%s ",temp->words[i]);
+        printf("->\n");
         temp=temp->next;
-
     }
-    */
+    
     
     if (fclose(insFile))
     {
