@@ -18,19 +18,24 @@ instNode* buildInstructionsList(FILE *insFile)
     char line[MAX_LINE_LEN] ={0};/*varible for reading the lines.*/
     instNode *head = NULL;
     instNode *pos = NULL;
+    int i;
     while (fgets(line, MAX_LINE_LEN, insFile))
     {
         instNode *node = malloc(sizeof(instNode));
         node->words=convertLineToArray(trimSpace(line));
         node->amountOfWords=amountOfSpaces(line)+1;
         node->next =NULL;
-
-        if(head == NULL){
+    
+        /*for(i=0;i<node->amountOfWords;i++)
+            printf("%s,",node->words[i]);
+        printf("\n");*/
+        if(head == NULL){  
             pos = head = node;
         } else {
             pos = pos->next = node;
         }
     }
+
     return head;
 }
 
@@ -58,25 +63,25 @@ char** convertLineToArray(char* line){
     char nSpaces;
     int i;
     char **words;
-    char delim[]=" ";
     char *pWord;  
 
    nSpaces=amountOfSpaces(line);
 
-    words=malloc((nSpaces+1)*sizeof(char**));
+    words=malloc((nSpaces+1)*sizeof(char*));
     /* split the elements by space delimeter */ 
-    pWord=strtok(line,delim);
+    pWord=strtok(line," ");
     i=0;
     while(pWord!=NULL)
     {
-        words[i]=malloc(sizeof(char)*strlen(pWord));
+        words[i]=malloc(sizeof(char)*(strlen(pWord)+1));
         strcpy(words[i],pWord);
-        pWord=strtok(NULL,delim); 
+        pWord=strtok(NULL," "); 
         i++;
-        
     }
+    for(i=0;i<nSpaces;i++)
+        printf("%s,",words[i]);
+    printf("\n");
     return words;
-
 }
 
 char amountOfSpaces(char* line){
