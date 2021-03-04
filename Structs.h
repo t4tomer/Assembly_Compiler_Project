@@ -9,7 +9,9 @@ Each node contains words of the line (as array) and poniter to the next node.
 #ifndef STRUCTSH
 #define STRUCTSH
 typedef struct instNode { 
-    char *words; 
+    char **words; 
+    char amountOfWords;
     struct instNode* next; 
+
 }instNode;
 #endif

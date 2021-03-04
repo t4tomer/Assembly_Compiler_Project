@@ -10,6 +10,8 @@ This file contains all the utilites functions for the project.
 
 
 char *trimSpace(char *str);/*Help function to trim spaces*/
+char** convertLineToArray(char* line); /* this function converts line to an array by using delimeter of space */
+char amountOfSpaces(char* line); /*this function returns the amount of spaces */
 
 instNode* buildInstructionsList(FILE *insFile)
 {
@@ -19,8 +21,8 @@ instNode* buildInstructionsList(FILE *insFile)
     while (fgets(line, MAX_LINE_LEN, insFile))
     {
         instNode *node = malloc(sizeof(instNode));
-        node->words = malloc(sizeof(MAX_LINE_LEN));
-        strcpy(node->words,trimSpace(line));
+        node->words=convertLineToArray(trimSpace(line));
+        node->amountOfWords=amountOfSpaces(line)+1;
         node->next =NULL;
 
         if(head == NULL){
@@ -50,4 +52,41 @@ char *trimSpace(char *str)
 
   return str;
 }
+
+char** convertLineToArray(char* line){
+
+    char nSpaces;
+    int i;
+    char **words;
+    char delim[]=" ";
+    char *pWord;  
+
+   nSpaces=amountOfSpaces(line);
+
+    words=malloc((nSpaces+1)*sizeof(char**));
+    /* split the elements by space delimeter */ 
+    pWord=strtok(line,delim);
+    i=0;
+    while(pWord!=NULL)
+    {
+        words[i]=malloc(sizeof(char)*strlen(pWord));
+        strcpy(words[i],pWord);
+        pWord=strtok(NULL,delim); 
+        i++;
+        
+    }
+    return words;
+
+}
+
+char amountOfSpaces(char* line){
+  int i;
+  char amountOfSpaces=0; 
+  for(i=0;line[i];i++) /* count amount of spaces */ 
+        if(line[i]==' ')
+             amountOfSpaces++;
+  return amountOfSpaces;           
+}
+
+
 

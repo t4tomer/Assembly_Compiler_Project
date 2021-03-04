@@ -21,9 +21,14 @@ int firstTransition (char *fileName)
     temp = listOfInstructions;
     while(temp!=NULL)
     {
-        printf("%s->",temp->words);
+        int i;
+        for(i=0;i<temp->amountOfWords;i++)
+            printf("%s,",temp->words[i]);
+        printf("->");
         temp=temp->next;
+
     }
+
     
     if (fclose(insFile))
     {
@@ -32,3 +37,4 @@ int firstTransition (char *fileName)
     }
     return(EXIT_SUCCESS);
 }
+
