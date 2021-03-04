@@ -45,9 +45,9 @@ void trimSpace(char *str)
 {
   char *p;
   size_t len = strlen(str);
-  for (p = str + len - 1; isspace (*p); --p) /* nothing */ ;
+  for (p = str + len - 1; isspace (*p); --p) ;
   p[1] = '\0';
-  for (p = str; isspace (*p); ++p) /* nothing */ ;
+  for (p = str; isspace (*p); ++p) ;
   memmove (str, p, len - (size_t) (p - str) + 1);
 
 }
