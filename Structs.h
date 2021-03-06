@@ -5,7 +5,7 @@ This header contains all the structs in the project.
 #define STRUCTSH
 typedef struct instNode { 
     /*
-    This struct contain all the line as linked list.
+    This struct contain a line as node.
     Each node contains words of the line (as array) and poniter to the next node.
     */
     char **words; 
@@ -14,5 +14,24 @@ typedef struct instNode {
 }instNode;
 
 
+typedef struct symbolNode { 
+    /*
+    This struct contain a symbol row in table symbos as a node.
+    Each node contains symbol, value and attributes.
+    */
+    char *symbol; 
+    int value;
+    char **attributes;
+    int nOfAtt;
+    struct symbolNode* next; 
+}symbolNode;
 
+typedef struct symbolTableList { 
+    /*
+    This struct contains the symbol table as a linked list.
+    There are 2 pointers - one to the head and one to the end.
+    */
+    symbolNode *head;
+    symbolNode *last;
+}symbolTableList;
 #endif

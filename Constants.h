@@ -10,4 +10,6 @@
 
 #define SPACE_CHAR 32
 
+typedef int boolean;
+enum { false, true };
 #endif

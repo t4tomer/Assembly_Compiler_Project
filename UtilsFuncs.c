@@ -19,7 +19,6 @@ instNode* buildInstructionsList(FILE *insFile)
     char line[MAX_LINE_LEN] ={0};/*varible for reading the lines.*/
     instNode *head = NULL;
     instNode *pos = NULL;
-    int i;
     while (fgets(line, MAX_LINE_LEN, insFile))
     {
         instNode *node = malloc(sizeof(instNode));
@@ -52,13 +51,10 @@ void trimSpace(char *str)
 
 }
 
-void convertLineToArray(char* line, char** arr){
-
-    char nSpaces;
+void convertLineToArray(char* line, char** arr)
+{
     int i;
-    char *pWord;  
-    nSpaces=amountOfSpaces(line);
-
+    char *pWord;
     /* split the elements by space delimeter */ 
     pWord=strtok(line," \t");
     i=0;
@@ -79,5 +75,24 @@ char amountOfSpaces(char* line){
   return amountOfSpaces;           
 }
 
+char* substr(const char *src, int m, int n)
+{
+    int len, i;
+    char *dest;
+
+    len = n - m;
+ 
+    dest = (char*)malloc(sizeof(char) * (len + 1));
+ 
+    for (i = m; i < n && (*(src + i) != '\0'); i++)
+    {
+        *dest = *(src + i);
+        dest++;
+    }
+ 
+    *dest = '\0';
+ 
+    return dest - len;
+}
 
 
