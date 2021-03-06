@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "constants.h": "c",
+        "utilsfuncs.h": "c",
+        "structs.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "firsttransition.h": "c",
+        "symbolstable.h": "c",
+        "validations.h": "c"
+    }
+}
