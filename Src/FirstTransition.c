@@ -17,7 +17,7 @@ int firstTransition (char *fileName)
     struct symbolNode *symbolNode;
     symbolTableList *symbolTable;
     
-        struct symbolNode **symbolTmp;
+        struct symbolNode *symbolTmp;
     
     initSymbolTable(symbolTable);
     if((insFile=fopen(fileName,"r"))==NULL)
@@ -46,12 +46,12 @@ int firstTransition (char *fileName)
         instPos=instPos->next;
     }
 
-    //TODO need to fix the printing
+    
     symbolTmp = symbolTable->head;
     while(symbolTmp!=NULL)
     {
-        printf("%s\n",(*symbolTmp)->symbol);
-        symbolTmp=(*symbolTmp)->next;
+        printf("%s\n",symbolTmp->symbol);
+        symbolTmp=symbolTmp->next;
     }
 
     if (fclose(insFile))
