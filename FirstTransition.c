@@ -6,6 +6,7 @@
 #include "Structs.h"
 #include "UtilsFuncs.h"
 #include "Validations.h"
+#include "SymbolsTable.h"
 int firstTransition (char *fileName)
 {
     int IC=100,DC=0; /*IC - Instructions counter, DC - Data counter.*/
@@ -13,6 +14,7 @@ int firstTransition (char *fileName)
     instNode *listOfInstructions;
     instNode *instPos;
     boolean labelFlag;
+    symbolTableList *symbolTable=(symbolTableList*)initSymbolTable();
     if((insFile=fopen(fileName,"r"))==NULL)
     {
         perror("cannot open file!");
@@ -31,35 +33,24 @@ int firstTransition (char *fileName)
         {
             if(labelFlag)
             {
-                symbolNode *newSymbol=NULL;
-                newSymbol->symbol=malloc(sizeof(char) * strlen(instPos->words[0]-1));
-                strcpy(newSymbol->symbol,substr(instPos->words[0],0,strlen(instPos->words[0]-1)));
-                newSymbol->value=malloc(sizeof(int));
-                newSymbol->value = DC;
-                newSymbol->attributes=malsloc(sizeof(char*));
-                newSymbol->attributes[0]=malloc(sizeof(char)* strlen(instPos->words[1]));
-                strcpy(newSymbol->attributes[0], substr(instPos->words[1],1,strlen(substr)));
+                symbolNode *newSymbol=createNode(instPos->words[0], DC, instPos->words[1]);
+                printf("%s %d %s\n",newSymbol->symbol,newSymbol->value,newSymbol->attributes[0]);
             }
         }
+        labelFlag=false;
         instPos=instPos->next;
     }
-    /*
-    while(temp!=NULL)
-    {
-        int i=0;
-        for(;i<temp->amountOfWords;i++){
-            printf("%s(%d) ",temp->words[i],strlen(temp->words[i]));
-        }
-        printf("->\n");
-        temp=temp->next;
-    }*/
-    
-    
+
     if (fclose(insFile))
     {
         perror("cannot close file!");
         return EXIT_FAILURE;
     }
+    
+    free(insFile);
+    free(listOfInstructions);
+    free(instPos);
+    free(symbolTable);
     return(EXIT_SUCCESS);
 }
 
