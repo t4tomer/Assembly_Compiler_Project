@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Constants.h"
-#include "Structs.h"
-#include "UtilsFuncs.h"
-#include "Validations.h"
-#include "SymbolsTable.h"
+#include "../Headers/Constants.h"
+#include "../Headers/Structs.h"
+#include "../Headers/UtilsFuncs.h"
+#include "../Headers/Validations.h"
+#include "../Headers/SymbolsTable.h"
 int firstTransition (char *fileName)
 {
     int IC=100,DC=0; /*IC - Instructions counter, DC - Data counter.*/
@@ -14,7 +14,12 @@ int firstTransition (char *fileName)
     instNode *listOfInstructions;
     instNode *instPos;
     boolean labelFlag;
-    symbolTableList *symbolTable=(symbolTableList*)initSymbolTable();
+    struct symbolNode *symbolNode;
+    symbolTableList *symbolTable;
+    
+        struct symbolNode **symbolTmp;
+    
+    initSymbolTable(symbolTable);
     if((insFile=fopen(fileName,"r"))==NULL)
     {
         perror("cannot open file!");
@@ -32,13 +37,21 @@ int firstTransition (char *fileName)
         if(isDataAllocation(instPos->words[1]))
         {
             if(labelFlag)
-            {
-                symbolNode *newSymbol=createNode(instPos->words[0], DC, instPos->words[1]);
-                printf("%s %d %s\n",newSymbol->symbol,newSymbol->value,newSymbol->attributes[0]);
+            {   
+                symbolNode = createNode(instPos->words[0], DC, instPos->words[1]);
+                addNewSymbol(symbolTable,symbolNode);
             }
         }
         labelFlag=false;
         instPos=instPos->next;
+    }
+
+    //TODO need to fix the printing
+    symbolTmp = symbolTable->head;
+    while(symbolTmp!=NULL)
+    {
+        printf("%s\n",(*symbolTmp)->symbol);
+        symbolTmp=(*symbolTmp)->next;
     }
 
     if (fclose(insFile))
@@ -46,11 +59,7 @@ int firstTransition (char *fileName)
         perror("cannot close file!");
         return EXIT_FAILURE;
     }
-    
-    free(insFile);
-    free(listOfInstructions);
-    free(instPos);
-    free(symbolTable);
+
     return(EXIT_SUCCESS);
 }
 

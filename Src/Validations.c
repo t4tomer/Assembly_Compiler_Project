@@ -1,5 +1,5 @@
-#include "Validations.h"
-#include "Constants.h"
+#include "../Headers/Validations.h"
+#include "../Headers/Constants.h"
 #include <string.h>
 
 boolean isLabel(char *word)
@@ -11,7 +11,7 @@ boolean isLabel(char *word)
 
 boolean isDataAllocation(char *word)
 {
-    if(strcmp(word,".string") || strcmp(word,".data"))
+    if(strcmp(word,".string")==0 || strcmp(word,".data")==0)
         return true;
     return false;
 }

@@ -5,9 +5,9 @@ This file contains all the utilites functions for the project.
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "Structs.h"
-#include "Constants.h"
-#include "UtilsFuncs.h"
+#include "../Headers/Structs.h"
+#include "../Headers/Constants.h"
+#include "../Headers/UtilsFuncs.h"
 
 
 void trimSpace(char *str);/*Help function to trim spaces*/
@@ -94,5 +94,4 @@ char* substr(const char *src, int m, int n)
  
     return dest - len;
 }
-
 
