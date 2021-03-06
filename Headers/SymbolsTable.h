@@ -5,6 +5,6 @@
 
 void initSymbolTable(symbolTableList*);
 void addNewSymbol(symbolTableList *, symbolNode *);
-symbolNode* createNode(char *, int, char *);
+symbolNode* createSymbolNode(char *, int, char *);
 void freeSymbolTable(symbolTableList *);
 #endif

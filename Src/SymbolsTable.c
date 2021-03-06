@@ -10,7 +10,7 @@ void initSymbolTable(symbolTableList *list)
     list->last = NULL; 
 }
 
-symbolNode* createNode( char *symbol, int value, char *attr)
+symbolNode* createSymbolNode( char *symbol, int value, char *attr)
 {
     symbolNode* newSymbol=malloc(sizeof(symbolNode));
     newSymbol->symbol=malloc(sizeof(char) * strlen(symbol));

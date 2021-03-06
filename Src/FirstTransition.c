@@ -38,7 +38,7 @@ int firstTransition (char *fileName)
         {
             if(labelFlag)
             {   
-                symbolNode = createNode(instPos->words[0], DC, instPos->words[1]);
+                symbolNode = createSymbolNode(instPos->words[0], DC, instPos->words[1]);
                 addNewSymbol(symbolTable,symbolNode);
             }
         }
