@@ -15,11 +15,17 @@ int firstTransition (char *fileName)
     instNode *instPos;
     boolean labelFlag;
     struct symbolNode *symbolNode;
+
     symbolTableList *symbolTable;
-    
-        struct symbolNode *symbolTmp;
+    memoryImageList *memoryTable;
+    struct memoryNode *memoryNode;
+
+    struct memoryNode *memoryTmp;
+    struct symbolNode *symbolTmp;
     
     initSymbolTable(symbolTable);
+    initMemoryTable(memoryTable);
+
     if((insFile=fopen(fileName,"r"))==NULL)
     {
         perror("cannot open file!");
@@ -40,7 +46,37 @@ int firstTransition (char *fileName)
             {   
                 symbolNode = createSymbolNode(instPos->words[0], DC, instPos->words[1]);
                 addNewSymbol(symbolTable,symbolNode);
+                printf("this word:%s\n",instPos->words[1]);
+                if(strcmp(instPos->words[1],".string")==0)
+                     {
+                            char kaka = instPos->words[2][3];
+                            memoryNode=createMemoryNode(IC,kaka,'A');
+
+
+                            stringToCharForImag(instPos->words[2]);
+                            printf("the words is:%x\n",kaka);
+
+
+
+                            printf("true\n");
+                            printf("the words is:%s\n",instPos->words[2]);
+
+                           /* char *sptr;
+                            printf("  %c",instPos->words[2][0]);
+
+                         sptr=instPos->words[2][0];  */
+
+                     }
+
+
+
             }
+
+           
+            
+
+
+
         }
         labelFlag=false;
         instPos=instPos->next;

@@ -3,6 +3,7 @@
 #include "../Headers/Constants.h"
 #include <stdlib.h>
 #include <string.h>
+/*methods to work with Symbols Table */ 
 void initSymbolTable(symbolTableList *list)
 {
     list = (symbolTableList*)malloc(sizeof(symbolTableList));
@@ -36,6 +37,11 @@ void addNewSymbol(symbolTableList *list, symbolNode *newNode)
         list->last = list->last->next;
     }
 }
+
+
+
+
+
 
 void freeSymbolTable(symbolTableList *list)
 {

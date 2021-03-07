@@ -13,6 +13,7 @@ This file contains all the utilites functions for the project.
 void trimSpace(char *str);/*Help function to trim spaces*/
 void convertLineToArray(char* line, char** arr); /* this function converts line to an array by using delimeter of space */
 char amountOfSpaces(char* line); /*this function returns the amount of spaces */
+void stringToCharForImag(char string); /* used to save the char after .string or save digits after .data */
 
 instNode* buildInstructionsList(FILE *insFile)
 {
@@ -40,7 +41,7 @@ instNode* buildInstructionsList(FILE *insFile)
 }
 
 
-void trimSpace(char *str)
+void trimSpace(char *str) /* TODO cheak why there are extra space/junk befour the string */
 {
   char *p;
   size_t len = strlen(str);
@@ -94,4 +95,16 @@ char* substr(const char *src, int m, int n)
  
     return dest - len;
 }
+void stringToCharForImag(char bullshit){
 
+int i;
+        for(i=0;i<strlen(bullshit)-1;i++)
+        {
+                
+
+
+
+        }
+
+
+}
